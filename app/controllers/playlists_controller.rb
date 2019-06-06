@@ -1,6 +1,6 @@
 class PlaylistsController < ApplicationController
   before_action :set_playlist, only: [:show, :edit, :update, :destroy]
-  before_action :set_user, only: [:new, :edit]
+  before_action :set_users, only: [:new, :edit, :create, :update]
 
   # GET /playlists
   # GET /playlists.json
@@ -11,11 +11,11 @@ class PlaylistsController < ApplicationController
   # GET /playlists/1
   # GET /playlists/1.json
   def show
+    @song = Song.new
   end
 
   # GET /playlists/new
   def new
-
     @playlist = Playlist.new
   end
 
@@ -69,7 +69,7 @@ class PlaylistsController < ApplicationController
       @playlist = Playlist.find(params[:id])
     end
 
-    def set_user
+    def set_users
       @users_array = User.all.map {|x| [x.name, x.id]}
     end
 
